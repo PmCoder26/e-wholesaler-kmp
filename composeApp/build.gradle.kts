@@ -9,6 +9,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+
+    // Ktor client configs.
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -58,6 +61,9 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            // Ktor client configs.
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -68,10 +74,27 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+
+            // Ktor client configs.
+            implementation(libs.bundles.ktor)
+
+            // Datastore configs.
+            implementation(libs.datastore.preferences)
+            implementation(libs.datastore)
+
         }
+
+        // Ktor client configs. -- For macOS, iOS.
+        nativeMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
+
+            // Ktor client configs.
+            implementation(libs.ktor.client.okhttp)
         }
     }
 }
@@ -104,6 +127,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.material3.android)
     debugImplementation(compose.uiTooling)
 }
 

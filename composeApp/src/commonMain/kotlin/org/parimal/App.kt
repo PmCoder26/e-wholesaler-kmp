@@ -35,3 +35,10 @@ fun App() {
         }
     }
 }
+
+
+@Preview
+@Composable
+fun MyContent() {
+
+}
